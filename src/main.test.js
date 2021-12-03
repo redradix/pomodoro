@@ -31,4 +31,16 @@ describe('Create Pomodoro', () => {
       }, 5)
     }, 5)
   })
+
+  it('decreases until over', done => {
+    const oneMsInMinutes = 1 / 60 / 1000
+    const pomodoro = createPomodoro(oneMsInMinutes)
+
+    pomodoro.start()
+
+    setTimeout(() => {
+      expect(pomodoro.getRemainingTime()).toEqual(0)
+      done()
+    }, 5)
+  })
 })

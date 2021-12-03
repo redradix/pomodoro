@@ -10,7 +10,7 @@ export const createPomodoro = (duration = DEFAULT_DURATION) => {
     getRemainingTime: () => {
       if (startTime === undefined) return remainingTime
       const elapsedTime = Date.now() - startTime
-      return remainingTime - elapsedTime
+      return Math.max(remainingTime - elapsedTime, 0)
     },
   }
 }
