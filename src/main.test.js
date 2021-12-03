@@ -1,6 +1,6 @@
 import { createPomodoro } from './main.js'
 
-describe('Create Pomodoro', () => {
+describe('Pomodoro', () => {
   it('creates pomodoro with default duration', () => {
     const pomodoro = createPomodoro()
 
