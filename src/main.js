@@ -1,13 +1,16 @@
 const DEFAULT_DURATION = 25
 
 export const createPomodoro = (duration = DEFAULT_DURATION) => {
-  let remainingTime = duration * 60 * 1000
-
-  const decrementTime = () => (remainingTime = remainingTime - 1)
+  const remainingTime = duration * 60 * 1000
+  let startTime
 
   return {
-    start: () => decrementTime(),
+    start: () => (startTime = Date.now()),
     getDuration: () => duration,
-    getRemainingDuration: () => remainingTime,
+    getRemainingTime: () => {
+      if (startTime === undefined) return remainingTime
+      const elapsedTime = Date.now() - startTime
+      return remainingTime - elapsedTime
+    },
   }
 }

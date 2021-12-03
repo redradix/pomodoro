@@ -13,13 +13,22 @@ describe('Create Pomodoro', () => {
   it('not started pomodoro returns default time', () => {
     const pomodoro = createPomodoro()
     const duration = pomodoro.getDuration()
-    expect(pomodoro.getRemainingDuration()).toEqual(duration * 60 * 1000)
+    expect(pomodoro.getRemainingTime()).toEqual(duration * 60 * 1000)
   })
 
-  it('starts pomodoro and decrements duration', () => {
+  it('starts pomodoro and decrements duration', done => {
     const pomodoro = createPomodoro()
-    const duration = pomodoro.getDuration()
+    const remainingTime1 = pomodoro.getRemainingTime()
     pomodoro.start()
-    expect(pomodoro.getRemainingDuration()).toBeLessThan(duration * 60 * 1000)
+
+    setTimeout(() => {
+      const remainingTime2 = pomodoro.getRemainingTime()
+      expect(remainingTime2).toBeLessThan(remainingTime1)
+
+      setTimeout(() => {
+        expect(pomodoro.getRemainingTime()).toBeLessThan(remainingTime2)
+        done()
+      }, 5)
+    }, 5)
   })
 })
