@@ -48,4 +48,20 @@ describe('Pomodoro', () => {
       done()
     }, 5)
   })
+
+  it('takes a break', done => {
+    const pomodoro = createPomodoro()
+
+    pomodoro.takeBreak()
+
+    setTimeout(() => {
+      const breakRemainingTime = pomodoro.getBreakRemainingTime()
+      expect(breakRemainingTime).toBeLessThan(5 * 60 * 1000)
+      
+      setTimeout(() => {
+        expect(pomodoro.getBreakRemainingTime()).toBeLessThan(breakRemainingTime)
+        done()
+      }, 5)
+    }, 5)
+  })
 })
