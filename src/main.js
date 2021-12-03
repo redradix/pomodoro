@@ -5,7 +5,9 @@ export const createPomodoro = (duration = DEFAULT_DURATION) => {
   let startTime
 
   return {
-    start: () => (startTime = Date.now()),
+    start: () => {
+      startTime = Date.now()
+    },
     getDuration: () => duration,
     getRemainingTime: () => {
       if (startTime === undefined) return remainingTime
