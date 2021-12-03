@@ -5,4 +5,8 @@ describe('Create Pomodoro', () => {
     const pomodoro = createPomodoro()
     expect(pomodoro.getDuration()).toEqual(25)
   })
+  it('creates pomodoro with custom duration', () => {
+    const pomodoro = createPomodoro(10)
+    expect(pomodoro.getDuration()).toEqual(10)
+  })
 })
