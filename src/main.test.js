@@ -9,4 +9,17 @@ describe('Create Pomodoro', () => {
     const pomodoro = createPomodoro(10)
     expect(pomodoro.getDuration()).toEqual(10)
   })
+
+  it('not started pomodoro returns default time', () => {
+    const pomodoro = createPomodoro()
+    const duration = pomodoro.getDuration()
+    expect(pomodoro.getRemainingDuration()).toEqual(duration * 60 * 1000)
+  })
+
+  it('starts pomodoro and decrements duration', () => {
+    const pomodoro = createPomodoro()
+    const duration = pomodoro.getDuration()
+    pomodoro.start()
+    expect(pomodoro.getRemainingDuration()).toBeLessThan(duration * 60 * 1000)
+  })
 })
